@@ -45,8 +45,8 @@ public class Robot extends IterativeRobot {
 		
 		double range = ultron.getRangeMM();
 		boolean limitEngaged = limitSwitch.get();
-		leftTalon.set(-.2);
-		rightTalon.set(.2);
+		leftTalon.set(-.3);
+		rightTalon.set(.3);
 		// if (limitEngaged)
 		if (range/25.3 <= 10){
 			leftTalon.set(0);
