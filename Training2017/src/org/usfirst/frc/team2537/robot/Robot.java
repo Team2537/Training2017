@@ -1,20 +1,16 @@
 package org.usfirst.frc.team2537.robot;
 
-import com.ctre.CANTalon;
+import org.usfirst.frc.team2537.robot.drive.DriveSubsystem;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Ultrasonic;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
-
+	public static DriveSubsystem driveSys;
 	
 	
 	@Override
 	public void robotInit() {
-		
+		driveSys = new DriveSubsystem();
 	}
 
 	@Override
