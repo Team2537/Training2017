@@ -7,7 +7,7 @@ public class Ports {
 	public static final int LEFT_TALON = 1, RIGHT_TALON = 2;
 	
 	//ULTRASONIC
-	public static final int ULTRAONIC_TRIGGER = 9, ULTRASONIC_ECHO = 8;
+	public static final int ULTRASONIC_TRIGGER = 9, ULTRASONIC_ECHO = 8;
 	
 	//Digital Inputs
 	public static final int LIMITSWITCH_ONE = 3;
