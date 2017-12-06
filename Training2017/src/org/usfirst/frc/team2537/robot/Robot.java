@@ -26,10 +26,11 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto choices", chooser);
 		leftTalon = new CANTalon(Ports.LEFT_TALON);
 		rightTalon = new CANTalon(Ports.RIGHT_TALON);
-		ultron = new Ultrasonic(Ports.ULTRAONIC_TRIGGER, Ports.ULTRASONIC_ECHO);
+		ultron = new Ultrasonic(Ports.ULTRASONIC_TRIGGER, Ports.ULTRASONIC_ECHO);
 		limitSwitch = new DigitalInput(Ports.LIMITSWITCH_ONE);
 		ultron.setAutomaticMode(true);
-
+		encoder encoDepression = new Encoder(5, 6, true, EncodingType.k4X);
+		
 	}
 
 	@Override
@@ -42,19 +43,61 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		
 		double range = ultron.getRangeMM();
 		boolean limitEngaged = limitSwitch.get();
+		Encoder encoDepression = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+		sampleEncoder.reset();
+		int count = sampleEncoder.get();
+		limitSwitch.get();
 		leftTalon.set(-.3);
 		rightTalon.set(.3);
 		// if (limitEngaged)
 		if (range/25.3 <= 10){
 			leftTalon.set(0);
 			rightTalon.set(0);
+		} else if(encoDepression == 45){
+			leftTalon.set(.0);
+			rightTalon.set(.3);
+		} else if(encoDepression => 65 & < 90){
+			leftTalon.set(-.3);
+			rightTalon.set(.3);
+		} else if(encoDepression == 90){
+			leftTalon.set(-.6);
+			rightTalon.set(.3);
+		} else if(encoDepression => 105 & < 135){
+			leftTalon.set(-.3);
+			rightTalon.set(.3);
+		} else if(encoDepression == 135){
+			leftTalon.set(-.6);
+			rightTalon.set(.3);
+		} else if(encoDepression => 155 & < 175){
+			leftTalon.set(-.3);
+			rightTalon.set(.3);
+		} else if(encoDepression == 175){
+			leftTalon.set(0);
+			rightTalon.set(.3);
+		} else if(encoDepression => 195 & < 205){
+			leftTalon.set(-.3);
+			rightTalon.set(.3);
+		} else if(encoDepression == 205){
+			leftTalon.set();
+			rightTalon.set();
+		} if(range == 0){
+			limitEngaged.set(true);
 		}
+	
+		
+		
+		
+		
+			
 
 	}
 
+	public boolean getLimit(){
+		return limitSwitch.get();
+	}
+	
 	/**
 	 * This function is called periodically during operator control
 	 */
@@ -69,3 +112,4 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 	}
 }
+/
