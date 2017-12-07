@@ -29,7 +29,7 @@ public class Robot extends IterativeRobot {
 		ultron = new Ultrasonic(Ports.ULTRASONIC_TRIGGER, Ports.ULTRASONIC_ECHO);
 		limitSwitch = new DigitalInput(Ports.LIMITSWITCH_ONE);
 		ultron.setAutomaticMode(true);
-		encoder encoDepression = new Encoder(5, 6, true, EncodingType.k4X);
+		encoder encoder = new Encoder(5, 6, true, EncodingType.k4X);
 		
 	}
 
@@ -45,7 +45,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		double range = ultron.getRangeMM();
 		boolean limitEngaged = limitSwitch.get();
-		Encoder encoDepression = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+		Encoder encoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
 		sampleEncoder.reset();
 		int count = sampleEncoder.get();
 		limitSwitch.get();
@@ -55,31 +55,31 @@ public class Robot extends IterativeRobot {
 		if (range/25.3 <= 10){
 			leftTalon.set(0);
 			rightTalon.set(0);
-		} else if(encoDepression == 45){
+		} else if(encoder == 45){
 			leftTalon.set(.0);
 			rightTalon.set(.3);
-		} else if(encoDepression => 65 & < 90){
+		} else if(encoder => 65 & < 90){
 			leftTalon.set(-.3);
 			rightTalon.set(.3);
-		} else if(encoDepression == 90){
+		} else if(encoder == 90){
 			leftTalon.set(-.6);
 			rightTalon.set(.3);
-		} else if(encoDepression => 105 & < 135){
+		} else if(encoder => 105 & < 135){
 			leftTalon.set(-.3);
 			rightTalon.set(.3);
-		} else if(encoDepression == 135){
+		} else if(encoder == 135){
 			leftTalon.set(-.6);
 			rightTalon.set(.3);
-		} else if(encoDepression => 155 & < 175){
+		} else if(encoder => 155 & < 175){
 			leftTalon.set(-.3);
 			rightTalon.set(.3);
-		} else if(encoDepression == 175){
+		} else if(encoder == 175){
 			leftTalon.set(0);
 			rightTalon.set(.3);
-		} else if(encoDepression => 195 & < 205){
+		} else if(encoder => 195 & < 205){
 			leftTalon.set(-.3);
 			rightTalon.set(.3);
-		} else if(encoDepression == 205){
+		} else if(encoder == 205){
 			leftTalon.set();
 			rightTalon.set();
 		} if(range == 0){
