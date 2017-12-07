@@ -11,6 +11,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		driveSys = new DriveSubsystem();
+		driveSys.initDefaultCommand();
 	}
 
 	@Override
