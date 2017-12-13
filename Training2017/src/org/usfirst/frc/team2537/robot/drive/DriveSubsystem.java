@@ -45,27 +45,27 @@ public class DriveSubsystem extends Subsystem {
 		rightCount = rightEncoder.get();
 		leftCount = leftEncoder.get();
 		if(step == 1)
-			moveForward(0.1);
+			moveForward(0.5);
 		else if(step == 2)
 			ultrasonicStop(12);
 		else if(step == 3)
-			turnRight(.1);
+			turnRight(.5);
 //		else if(step == 4)
-//			moveForward(0.1);
+//			moveForward(0.5);
 //		else if(step == 5)
 //			ultrasonicStop(12);
 //		else if(step == 6)
-//			turnLeft(.1);
+//			turnLeft(.5);
 //		else if(step == 7)
-//			moveForward(.1);
+//			moveForward(.5);
 //		else if(step == 8)
 //			ultrasonicStop(12);
 //		else if(step == 9)
-//			turnLeft(.1);
+//			turnLeft(.5);
 //		else if(step == 10)
 //			moveDistance(48);
 //		else if(step == 11)
-//			turnRight(.1);
+//			turnRight(.5);
 	}
 	/**
 	 * stops the robot at a certain distance from what the ultrasonic senses
