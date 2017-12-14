@@ -1,8 +1,12 @@
 package org.usfirst.frc.team2537.robot;
 
+import org.usfirst.frc.team2537.robot.drive.DriveSubsystem;
+
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -18,9 +22,12 @@ public class Robot extends IterativeRobot {
 	CANTalon rightTalon;
 	Ultrasonic ultron;
 	DigitalInput limitSwitch;
+	public static DriveSubsystem driveSys;
 	
 	@Override
 	public void robotInit() {
+		driveSys = new DriveSubsystem();
+	    driveSys.initDefaultCommand();
 		chooser.addDefault("Default Auto", defaultAuto);
 		chooser.addObject("My Auto", customAuto);
 		SmartDashboard.putData("Auto choices", chooser);
@@ -29,7 +36,7 @@ public class Robot extends IterativeRobot {
 		ultron = new Ultrasonic(Ports.ULTRASONIC_TRIGGER, Ports.ULTRASONIC_ECHO);
 		limitSwitch = new DigitalInput(Ports.LIMITSWITCH_ONE);
 		ultron.setAutomaticMode(true);
-		encoder encoder = new Encoder(5, 6, true, EncodingType.k4X);
+		Encoder encoder = new Encoder(5, 6, true, EncodingType.k4X);
 		
 	}
 
@@ -46,8 +53,8 @@ public class Robot extends IterativeRobot {
 		double range = ultron.getRangeMM();
 		boolean limitEngaged = limitSwitch.get();
 		Encoder encoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
-		sampleEncoder.reset();
-		int count = sampleEncoder.get();
+		encoder.reset();
+		int count = encoder.get();
 		limitSwitch.get();
 		leftTalon.set(-.3);
 		rightTalon.set(.3);
@@ -55,35 +62,35 @@ public class Robot extends IterativeRobot {
 		if (range/25.3 <= 10){
 			leftTalon.set(0);
 			rightTalon.set(0);
-		} else if(encoder == 45){
+		} else if(count == 45){
 			leftTalon.set(.0);
 			rightTalon.set(.3);
-		} else if(encoder => 65 & < 90){
+		} else if((count >= 65)  && (count <90)){
 			leftTalon.set(-.3);
 			rightTalon.set(.3);
-		} else if(encoder == 90){
+		} else if(count == 90){
 			leftTalon.set(-.6);
 			rightTalon.set(.3);
-		} else if(encoder => 105 & < 135){
+		} else if((count >= 105) && (count < 135)){
 			leftTalon.set(-.3);
 			rightTalon.set(.3);
-		} else if(encoder == 135){
+		} else if(count == 135){
 			leftTalon.set(-.6);
 			rightTalon.set(.3);
-		} else if(encoder => 155 & < 175){
+		} else if ((count >= 155) && (count < 175)){
 			leftTalon.set(-.3);
 			rightTalon.set(.3);
-		} else if(encoder == 175){
+		} else if(count == 175){
 			leftTalon.set(0);
 			rightTalon.set(.3);
-		} else if(encoder => 195 & < 205){
+		} else if(( count >= 195) && (count < 205)){
 			leftTalon.set(-.3);
 			rightTalon.set(.3);
-		} else if(encoder == 205){
-			leftTalon.set();
-			rightTalon.set();
-		} if(range == 0){
-			limitEngaged.set(true);
+		} else if(count == 205){
+			leftTalon.set(0);
+			rightTalon.set(0);
+		} else if(range == 0){
+			limitEngaged = true;
 		}
 	
 		
