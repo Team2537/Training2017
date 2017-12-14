@@ -2,6 +2,8 @@ package org.usfirst.frc.team2537.robot.drive;
 
 import org.usfirst.frc.team2537.robot.Ports;
 
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
@@ -9,8 +11,8 @@ import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DriveSubsystem extends Subsystem {
-	Talon leftTalon;
-	Talon rightTalon;
+	CANTalon leftTalon;
+	CANTalon rightTalon;
 	Ultrasonic ultrasensor;
 	DigitalInput limitSwitch;
 	Encoder leftEncoder;
@@ -23,8 +25,8 @@ public class DriveSubsystem extends Subsystem {
 	double circumference;
 	
 	public DriveSubsystem() {
-		leftTalon = new Talon(Ports.LEFT_TALON);
-		rightTalon = new Talon(Ports.RIGHT_TALON);
+		leftTalon = new CANTalon(Ports.LEFT_TALON);
+		rightTalon = new CANTalon(Ports.RIGHT_TALON);
 		ultrasensor = new Ultrasonic(Ports.UNTRASONIC_TRIGGER, Ports.ULTRASONIC_ECHO);
 		limitSwitch = new DigitalInput(Ports.LIMIT_SWITCH);
 		leftEncoder = new Encoder(Ports.LEFTENCODERONE, Ports.LEFTENCODERTWO, false, Encoder.EncodingType.k4X);
