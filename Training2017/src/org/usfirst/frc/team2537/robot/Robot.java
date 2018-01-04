@@ -1,35 +1,16 @@
 package org.usfirst.frc.team2537.robot;
 
-import com.ctre.CANTalon;
+import org.usfirst.frc.team2537.robot.drive.DriveSubsystem;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Ultrasonic;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
+	public static DriveSubsystem driveSys;
 
-	final String defaultAuto = "Default";
-	final String customAuto = "My Auto";
-	String autoSelected;
-	SendableChooser<String> chooser = new SendableChooser<>();
-	CANTalon leftTalon;
-	CANTalon rightTalon;
-	Ultrasonic ultron;
-	DigitalInput limitSwitch;
-	
 	@Override
 	public void robotInit() {
-		chooser.addDefault("Default Auto", defaultAuto);
-		chooser.addObject("My Auto", customAuto);
-		SmartDashboard.putData("Auto choices", chooser);
-		leftTalon = new CANTalon(Ports.LEFT_TALON);
-		rightTalon = new CANTalon(Ports.RIGHT_TALON);
-		ultron = new Ultrasonic(Ports.ULTRAONIC_TRIGGER, Ports.ULTRASONIC_ECHO);
-		limitSwitch = new DigitalInput(Ports.LIMITSWITCH_ONE);
-		ultron.setAutomaticMode(true);
-
+		driveSys = new DriveSubsystem ();
+		driveSys.initDefaultCommand();
 	}
 
 	@Override

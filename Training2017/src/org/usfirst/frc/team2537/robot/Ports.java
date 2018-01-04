@@ -11,5 +11,12 @@ public class Ports {
 	
 	//Digital Inputs
 	public static final int LIMITSWITCH_ONE = 3;
-
+	//Button 8
+	public static final int BUTTON_EIGHT = 8;
+	//Button 1
+	public static final int BUTTON_ONE = 1;
+	//LeftJoystick
+	public static final int LEFT_JOYSTICK = 0;
+	
+	
 }
